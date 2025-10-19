@@ -5,6 +5,7 @@ import { PrismaModule } from 'prisma/prisma.module';
 import configuration from './config/configuration';
 import { validationSchema } from './config/validation';
 import { HealthController } from './health/health.controller';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { HealthController } from './health/health.controller';
     }),
     PrismaModule,
     AuthModule,
+    UserModule,
   ],
   controllers: [HealthController],
 })
