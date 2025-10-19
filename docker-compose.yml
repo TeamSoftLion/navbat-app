@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  navbat_postgres:
+    image: postgres:16
+    container_name: navbat_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: navbat_user
+      POSTGRES_PASSWORD: navbat_pass
+      POSTGRES_DB: navbat_db
+    ports:
+      - '5433:5432'
+    volumes:
+      - navbat_pgdata:/var/lib/postgresql/data
+
+volumes:
+  navbat_pgdata:
