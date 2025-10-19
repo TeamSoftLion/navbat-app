@@ -5,3 +5,30 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+enum UserRole{
+  ADMIN
+  OPERATOR
+  CLIENT
+}
+
+
+model User{
+  id String @id @default(cuid())
+  phone String @unique
+  role UserRole @default(CLIENT)
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  otpCodes OtpCode[]
+}
+
+model OtpCode{
+  id String @id @default(cuid())
+  code String
+  phone String
+  expiresAt DateTime
+  verified Boolean @default(false)
+  createdAt DateTime @default(now())
+  user User? @relation(fields: [userId], references: [id])
+  userId String?
+}
